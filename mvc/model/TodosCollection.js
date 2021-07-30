@@ -1,9 +1,9 @@
 // model
 
 class TodosCollection {
-    constructor(url) { // url для того что бы передавать данные на сервер
-        this._url = url; // в constructor мы перечисляем все свойства которые у нас есть
-        this.list = []; // и указываем начальные значения, что бы понимать что там хранится
+    constructor(url) {
+        this._url = url; 
+        this.list = []; 
         this.item = null;
     }
     fetchTodos() {
