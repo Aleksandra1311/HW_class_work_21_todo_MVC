@@ -4,17 +4,16 @@ const DELETE_BTN_SELECTOR = '.delete-btn';
 const ITEM_SELECTOR = '.task-item';
 const ADD_BTN_SELECTOR = '.addTodoBtn';
 const TASK_DONE_CLASS = 'done';
-// const taskListTemplate = '<div class = "task-list"></div>';
 const taskListTemplate = $('.task-list');
 
 const taskItemTemplate = $("#taskItemTemplate").html();
 
 class TodosView {
-    constructor($el, config = {}) {           // принял  $el 
+    constructor($el, config = {}) { 
         this._$task = $('#newTodoInput');
-        this._container = $el;   // это наш елемент куда мы помещаем все остальные ul
-        this._$list = null;// мы пока не знаем что там будет хранился
-        this._config = config; //это аргумент {} у которого будет в качестве ключа будут события, в значение будет ф-я которую которую нужно будет ызвать когда событие произойдёт
+        this._container = $el; 
+        this._$list = null;
+        this._config = config;
         
         this.initView();
     }
@@ -30,10 +29,10 @@ class TodosView {
     onListClick(e) {
         const id = this.getElementId($(e.target));
 
-        this._config.onDelete(id); //onDelete это метод(ключ который передался нам из Controller)
+        this._config.onDelete(id);
     }
 
-    onToggleTaskStateClick(e) { // toggleTaskState -  переключить состояние задачи
+    onToggleTaskStateClick(e) { 
         const id = this.getElementId($(e.target));
 
         this._config.onToggle(id);
@@ -54,8 +53,8 @@ class TodosView {
         this._$task.val('');
     }
 
-    renderList(list) { //list массив который нам нужно отрендерить
-        this._$list.html(list.map(this.getListItemHtml).join('')); //взяли list идём по [], и каждый ел генерируется через ф-ю getListItemHtml и превращает его в html
+    renderList(list) { 
+        this._$list.html(list.map(this.getListItemHtml).join('')); 
     
     }
 
@@ -66,7 +65,7 @@ class TodosView {
             .replace('{{title}}', title);
     }
 
-    getElementId($el) { // поиск ID по ближайшему родителю 
+    getElementId($el) {
         return $el.closest(ITEM_SELECTOR).data('todoId');
     }
 
