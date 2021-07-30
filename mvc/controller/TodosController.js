@@ -1,25 +1,24 @@
 // controller
 
-class TodosController {        // инициализируется Controller
-    constructor($el) {         // приняли аргумент jquery el в котором нужно постоить интерфейс  и передаст view
-        this.initCollection(); //вызвали model (collection)
-        this.initView($el);    //вызвали view
+class TodosController {      
+    constructor($el) {        
+        this.initCollection(); 
+        this.initView($el);   
        
     }
 
     initCollection() {
-        this.todosCollection = new TodosCollection(TODOS_URL); // инициализируется model(Collection) 
+        this.todosCollection = new TodosCollection(TODOS_URL); 
         this.todosCollection
             .fetchTodos()
-            // .then(() => console.log(this.todosCollection.list)); //this.todosCollection.list) это мы получаем данные, тоже самое переписали ниже
             .then(() => this.renderList());
     }
 
     initView($el) {
-        this.todosView = new TodosView($el, {          //инициализируется view
-            onDelete: this.deleteTodo.bind(this),                  // сюда передаём функции которые передадим в config View и они выполняться когда произойдёт событие
-            onToggle: this.toggleTodo.bind(this),                  // ДЗ для переключения Done isDone
-            onSubmit: this.submitForm.bind(this),                  // ДЗ для ADD todo btn  добавления новой Todo
+        this.todosView = new TodosView($el, {          
+            onDelete: this.deleteTodo.bind(this),       
+            onToggle: this.toggleTodo.bind(this),                 
+            onSubmit: this.submitForm.bind(this),                  
         });
     }
 
@@ -38,7 +37,7 @@ class TodosController {        // инициализируется Controller
         this.renderList();
     }
 
-    deleteTodo(id) {  // задача: сказать model Collection что бы он удалил
+    deleteTodo(id) {  
         this.todosCollection.deleteTodo(id);
 
         this.renderList();
