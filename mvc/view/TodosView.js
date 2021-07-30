@@ -33,9 +33,11 @@ class TodosView {
     }
 
     onToggleTaskStateClick(e) { 
-        const id = this.getElementId($(e.target));
+        if (!$(e.target).is('.delete-btn')) {
+            const id = this.getElementId($(e.target));
 
-        this._config.onToggle(id);
+            this._config.onToggle(id);
+        }
     }
 
     onAddTodoClick(e) {
